@@ -24,19 +24,32 @@ function fetchUsers() {
     )
 }
 
-function fetchDetails(id) {
-    fetch("https://reqres.in/api/user/"+id).then(
+function fetchUser() {
+    let name = document.getElementById('name').value
+    let job = document.getElementById('job').value
+    let data = {
+        "name": name,
+        "job": job
+    }
+
+    fetch("https://reqres.in/api/user",{
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(
         res => {
             res.json().then(
                 data => {
+                    alert('Registro exitoso!')
                     console.log(data)
-                    if (data.data.length > 0) {
-                        let temp = "";
-                            console.log(data)
-                        document.getElementById('details').innerHTML = temp;
-                    }
                 }
             )
+            .catch(err=>{
+                alert("Hubo un error")
+                console.log(data)
+            })
         }
     )
 }
