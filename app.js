@@ -1,5 +1,6 @@
 window.onload = fetchUsers;
 
+
 function fetchUsers() {
     fetch("https://reqres.in/api/users").then(
         res => {
@@ -27,11 +28,10 @@ function fetchUsers() {
 function fetchUser() {
     let name = document.getElementById('name').value
     let job = document.getElementById('job').value
-    let data = {
+    const data = {
         "name": name,
         "job": job
     }
-
     fetch("https://reqres.in/api/user",{
         method: 'POST',
         body: JSON.stringify(data),
